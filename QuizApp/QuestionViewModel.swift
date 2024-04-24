@@ -16,4 +16,8 @@ class QuestionViewModel {
                       Question(title: "HOW how how how?", answer: "haaham", options: ["A", "B", "C", "D"])
 
                       ]
+    
+    func canSubmit() -> Bool {
+        return questions.filter({$0.selection == nil}).isEmpty
+    }
                       }
