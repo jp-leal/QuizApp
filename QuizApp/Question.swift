@@ -7,9 +7,10 @@
 
 import Foundation
 
-struct Question: Hashable {
+struct Question: Identifiable {
     let id = UUID()
     let title: String
     let answer: String
-    let choices: [String]
+    let options: [String]
+    var selection: String?
 }

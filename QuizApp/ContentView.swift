@@ -10,11 +10,11 @@ import SwiftUI
 
 
 struct ContentView: View {
-    @State var question = QuestionViewModel()
+    @State private var question = QuestionViewModel()
     
     var body: some View {
         TabView{
-            ForEach(question.questions, id: \.self) { pergunta in
+            ForEach(question.questions, id: \.id) { pergunta in
                 QuestionView(question: pergunta)
             }
         }.tabViewStyle(.page)

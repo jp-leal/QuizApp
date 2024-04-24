@@ -8,15 +8,34 @@
 import SwiftUI
 
 struct QuestionView: View {
-    var question: Question
+    @State var question: Question
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20){
             Text(question.title)
             
-            ForEach(question.choices, id: \.self) { choices in
-                    Text(choices)
-                
+            ForEach(question.options, id: \.self) { option in
+                HStack{
+                    Button{
+                        question.selection = option
+                    } label:
+                    
+                    {
+                        if question.selection == option {
+            Circle()
+                                .shadow(radius: 3)
+                                .frame(width: 20, height: 20)
+                                .foregroundStyle(Color("AppColor"))
+                        } else {
+                            Circle()
+                                .stroke()
+                                .shadow(radius: 3)
+                                .frame(width: 20, height: 20)
+                                
+                        }
+                    }
+                    Text(option)
+                }.foregroundStyle(.secondary)
             }
         }
         .padding(.horizontal, 20)
@@ -29,5 +48,5 @@ struct QuestionView: View {
 }
 
 #Preview {
-    QuestionView(question: Question(title: "jjusdj", answer: "djisjids", choices: ["k", "k"]))
+    QuestionView(question: Question(title: "jjusdj", answer: "djisjids", options: ["k", "b"]))
 }
