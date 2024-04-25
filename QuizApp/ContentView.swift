@@ -14,13 +14,13 @@ struct ContentView: View {
     
     var body: some View {
         TabView{
-            ForEach(question.questions, id: \.id) { pergunta in
+            ForEach(question.questions.indices, id: \.self) { pergunta in
                 
                 VStack{
                     Spacer()
-                    QuestionView(question: pergunta)
+                    QuestionView(question: $question.questions[pergunta])
                     Spacer()
-                    if let lastQuestion = question.questions.last, lastQuestion.id == pergunta.id {
+                    if let lastQuestion = question.questions.last, lastQuestion.id == question.questions[pergunta].id {
                         Button{
                             print(question.canSubmit())
                         } label: {
@@ -29,11 +29,12 @@ struct ContentView: View {
                                 .foregroundStyle(.white)
                                 .background(RoundedRectangle(cornerRadius: 20, style: .continuous).fill(Color("AppColor"))
                                 .frame(width: 300))
-                        }
+                        }.buttonStyle(.plain)
+                        .disabled(!question.canSubmit())
                     
                     }
                 }}
-        }.tabViewStyle(.page)
+        }.tabViewStyle(.page(indexDisplayMode: .never))
         
         
     }

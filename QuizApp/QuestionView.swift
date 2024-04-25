@@ -47,6 +47,3 @@ struct QuestionView: View {
     }
 }
 
-#Preview {
-    QuestionView(question: Question(title: "jjusdj", answer: "djisjids", options: ["k", "b"]))
-}
